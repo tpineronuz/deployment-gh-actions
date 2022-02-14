@@ -1,24 +1,17 @@
 name: Build and push image
-
-on:
-  push:
-    branches: [ deploy ]
-  pull_request:
-    branches: [ deploy ]
-
+on: push
 jobs:
-
-  build:
-
+  build&push:
+  name: Build and push image to DockerHub
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag testimg:v$(date +%s)
-
-
-
-
-
-
+      - uses: actions/checkout@master
+      - name: Build and push to Docker
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ github.repository }}
+          tag_with_ref: true
+          tag_with_sha: true
+          tags: ${{ github.sha }}
