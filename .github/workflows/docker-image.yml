@@ -1,7 +1,7 @@
 name: Build and push image
 on: push
 jobs:
-  build&push:
+  build_and_push:
     name: Build and push image to DockerHub
     runs-on: ubuntu-latest
     steps:
