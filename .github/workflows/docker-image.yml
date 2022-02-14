@@ -2,7 +2,7 @@ name: Build and push image
 on: push
 jobs:
   build&push:
-  name: Build and push image to DockerHub
+    name: Build and push image to DockerHub
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
